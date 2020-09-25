@@ -4,6 +4,7 @@ import BookmarkList from './BookmarkList/BookmarkList';
 import Nav from './Nav/Nav';
 import config from './config';
 import './App.css';
+import EditBookmark from './EditBookmark/editBookmark'
 
 const bookmarks = [
   // {
@@ -54,6 +55,15 @@ class App extends Component {
     })
   }
 
+  editBookmark = updatedBookmark => {
+    this.setState({
+      bookmarks: [ 
+        ...this.state.bookmarks.filter(bookmark => bookmark.id !== updatedBookmark.id), 
+        updatedBookmark, 
+      ],
+    })
+  }
+
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
       method: 'GET',
@@ -85,8 +95,16 @@ class App extends Component {
               onClickCancel={() => this.changePage('list')}
             />
           )}
+          {page === 'edit' && (
+            <EditBookmark 
+              onEditBookmark={this.editBookmark}
+              onClickCancel={() => this.changePage('list')}
+              bookmarks={bookmarks}
+            />
+          )}
           {page === 'list' && (
             <BookmarkList
+              
               bookmarks={bookmarks}
             />
           )}
