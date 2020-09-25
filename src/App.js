@@ -35,6 +35,16 @@ class App extends Component {
     })
   }
 
+  editBookmark = updatedBookmark => {
+    this.setState({
+      bookmarks: [
+        ...this.state.bookmarks.filter(bookmark => bookmark.id !== updatedBookmark.id),
+        updatedBookmark,
+      ],
+    })
+  }
+
+
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
       method: 'GET',
