@@ -3,10 +3,7 @@ import config from '../config'
 
 export default class EditBookmark extends React.Component {
   state = {
-    title: '',
-    url: '',
-    description: '',
-    rating: 1,
+    bookmark: {}
   }
 
   handleSubmit = e => {
@@ -19,8 +16,6 @@ export default class EditBookmark extends React.Component {
       description: description.value,
       rating: rating.value,
     }
-
-    // console.log(title, url, description, rating)
 
     fetch(config.API_ENDPOINT, {
       method: 'PATCH',

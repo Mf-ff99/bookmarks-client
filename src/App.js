@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import AddBookmark from './AddBookmark/AddBookmark'
+import EditBookmark from './EditBookmark/EditBookmark'
 import BookmarkList from './BookmarkList/BookmarkList'
 import BookmarksContext from './BookmarksContext'
 import Nav from './Nav/Nav'
@@ -31,17 +32,6 @@ class App extends Component {
     const newBookmarks = this.state.bookmarks.filter(bm => bm.id !== bookmarkId)
     this.setState({
       bookmarks: newBookmarks,
-    })
-  }
-
-  editBookmark = updatedBookmark => {
-    this.setState({
-      bookmarks: [
-        ...this.state.bookmarks.filter(
-          bookmark => bookmark.id !== updatedBookmark.id
-        ),
-        updatedBookmark,
-      ],
     })
   }
 
@@ -90,6 +80,7 @@ class App extends Component {
           <Nav />
           <div className="content" aria-live="polite">
             <Route path="/add-bookmark" component={AddBookmark} />
+            <Route path="/edit-bookmark" component={EditBookmark} />
             <Route exact path="/" component={BookmarkList} />
           </div>
         </BookmarksContext.Provider>
