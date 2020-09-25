@@ -62,6 +62,7 @@ export default function BookmarkItem(props) {
         </li>
       )}
     </BookmarksContext.Consumer>
+
   )
 }
 
